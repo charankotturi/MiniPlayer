@@ -1,0 +1,205 @@
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- ======================================= -->
+    <!-- ==========  All Transitions  ========== -->
+    <!-- ======================================= -->
+
+    <!-- 1) expanded <-> collapsed -->
+    <Transition
+        android:id="@+id/transition_expanded_collapsed"
+        app:constraintSetEnd="@+id/collapsed"
+        app:constraintSetStart="@+id/expanded"
+        app:duration="300"
+        app:motionInterpolator="easeInOut">
+
+    </Transition>
+
+    <Transition
+        android:id="@+id/transition_collapsed_expanded"
+        app:constraintSetEnd="@+id/expanded"
+        app:constraintSetStart="@+id/collapsed"
+        app:duration="300"
+        app:motionInterpolator="easeInOut" />
+
+    <!-- collapsed -> miniplayer -->
+    <Transition
+        android:id="@+id/transition_collapsed_miniplayer"
+        app:constraintSetEnd="@+id/miniplayer"
+        app:constraintSetStart="@+id/collapsed"
+        app:duration="300"
+        app:motionInterpolator="easeInOut">
+
+        <!-- Fade out the list for mini-player -->
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="1"
+                app:framePosition="0"
+                app:motionTarget="@+id/listView" />
+            <KeyAttribute
+                android:alpha="0"
+                app:framePosition="100"
+                app:motionTarget="@+id/listView" />
+        </KeyFrameSet>
+    </Transition>
+
+    <!-- miniplayer -> collapsed -->
+    <Transition
+        android:id="@+id/transition_miniplayer_collapsed"
+        app:constraintSetEnd="@+id/collapsed"
+        app:constraintSetStart="@+id/miniplayer"
+        app:duration="300"
+        app:motionInterpolator="easeInOut">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0"
+                app:framePosition="0"
+                app:motionTarget="@+id/listView" />
+            <KeyAttribute
+                android:alpha="1"
+                app:framePosition="100"
+                app:motionTarget="@+id/listView" />
+        </KeyFrameSet>
+    </Transition>
+
+    <!-- expanded <-> miniplayer -->
+    <Transition
+        android:id="@+id/transition_expanded_miniplayer"
+        app:constraintSetEnd="@+id/miniplayer"
+        app:constraintSetStart="@+id/expanded"
+        app:duration="300"
+        app:motionInterpolator="easeInOut">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="1"
+                app:framePosition="0"
+                app:motionTarget="@+id/listView" />
+            <KeyAttribute
+                android:alpha="0"
+                app:framePosition="100"
+                app:motionTarget="@+id/listView" />
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition
+        android:id="@+id/transition_miniplayer_expanded"
+        app:constraintSetEnd="@+id/expanded"
+        app:constraintSetStart="@+id/miniplayer"
+        app:duration="300"
+        app:motionInterpolator="easeInOut">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0"
+                app:framePosition="0"
+                app:motionTarget="@+id/listView" />
+            <KeyAttribute
+                android:alpha="1"
+                app:framePosition="100"
+                app:motionTarget="@+id/listView" />
+        </KeyFrameSet>
+    </Transition>
+
+
+    <!-- ======================================= -->
+    <!-- ==========  ConstraintSets   ========== -->
+    <!-- ======================================= -->
+
+    <ConstraintSet android:id="@+id/expanded">
+        <Constraint
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            android:keepScreenOn="true"
+            android:visibility="visible"
+            app:auto_show="false"
+            app:layout_constraintBottom_toTopOf="@+id/listView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.75"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:resize_mode="zoom"
+            app:show_buffering="always"
+            app:surface_type="surface_view"
+            app:use_controller="true" />
+
+        <Constraint
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="1.0"
+            android:background="@color/black"
+            android:paddingTop="16dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/playerView" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/collapsed">
+        <Constraint
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            android:keepScreenOn="true"
+            android:visibility="visible"
+            app:auto_show="false"
+            app:layout_constraintBottom_toTopOf="@+id/listView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.40"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:resize_mode="fit"
+            app:show_buffering="always"
+            app:surface_type="surface_view"
+            app:use_controller="true" />
+
+        <Constraint
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="1.0"
+            android:background="@color/black"
+            android:paddingTop="16dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/playerView" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/miniplayer">
+
+        <Constraint
+            android:id="@+id/playerView"
+            android:layout_width="139dp"
+            android:layout_height="243dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/black"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:resize_mode="fit"
+            app:show_buffering="always"
+            app:surface_type="surface_view"
+            app:use_controller="false" />
+
+        <Constraint
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="0.0"
+            android:background="@color/black"
+            android:paddingTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/playerView" />
+    </ConstraintSet>
+</MotionScene>
