@@ -1,10 +1,21 @@
 # Building a Smooth Mini Player in Android with MotionLayout
 
-![Demo of Mini Player](demo.gif)
+<table>
+<tr>
+<td style="vertical-align: top; width: 30%;">
 
 ## Introduction
 
-In modern media applications, a mini player (or Picture-in-Picture like component) has become an essential UI pattern. Think YouTube, Spotify, or any major streaming app - they all feature a collapsible player that allows users to continue watching/listening while browsing other content. In this article, I'll walk you through how I implemented a smooth, gesture-responsive mini player using Android's MotionLayout.
+In modern media applications, a mini player (or Picture-in-Picture like component) has become an essential UI pattern. Think YouTube, Spotify, or any major streaming app – they all feature a collapsible player that allows users to continue watching/listening while browsing other content. In this article, I'll walk you through how I implemented a smooth, gesture-responsive mini player using Android's MotionLayout.
+
+</td>
+<td style="vertical-align: top; width: 70%;">
+
+<img src="demo.gif" alt="Demo of Mini Player" style="max-width: 100%; height: auto; width: 1200px">
+
+</td>
+</tr>
+</table>
 
 ## The Challenge
 
